@@ -1,7 +1,0 @@
-<kmodule>
-
-  <kbase name="org.kie.example1">
-    <ksession name="ksession1"/>
-  </kbase>
-
-</kmodule>
