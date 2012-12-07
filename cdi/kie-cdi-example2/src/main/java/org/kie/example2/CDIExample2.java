@@ -12,7 +12,7 @@ import org.kie.runtime.KieSession;
  * Hello world!
  *
  */
-public class Example2  {
+public class CDIExample2  {
     
     @Inject @KSession("ksession2")
     KieSession kSession;
@@ -29,7 +29,7 @@ public class Example2  {
         Weld w = new Weld();
         
         WeldContainer wc = w.initialize();
-        Example2 bean = wc.instance().select(Example2.class).get();
+        CDIExample2 bean = wc.instance().select(CDIExample2.class).get();
         bean.go();
         
         w.shutdown();
