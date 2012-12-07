@@ -1,5 +1,10 @@
-ipse, Netbeans and IntelliJ files
+/target
+/local
+/bin
+
+#Eclipse, Netbeans and IntelliJ files
 /.*
+/.settings/
 !.gitignore
 /nbproject
 /*.ipr
