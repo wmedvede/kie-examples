@@ -1,14 +1,13 @@
 package org.kie.example1;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import org.junit.Test;
-import org.kie.example1.APIExample1;
 
-import static org.junit.Assert.assertEquals;
-
-public class APIExample1Test {
+public class APIExample1Test {    
     
     @Test
     public void testGo() {
