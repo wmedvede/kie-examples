@@ -22,6 +22,7 @@
   </properties>
 
   <modules>
+    <module>kie-api-example05</module>
     <module>kie-api-example1</module>
     <module>kie-api-example2</module>
     <module>kie-api-example3</module>
