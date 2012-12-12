@@ -2,19 +2,15 @@ package org.kie.example6;
 
 import java.io.File;
 import java.io.PrintStream;
-import java.util.Arrays;
 
-import org.kie.builder.GAV;
+import org.kie.KieServices;
 import org.kie.builder.KieBuilder;
-import org.kie.builder.KieContainer;
 import org.kie.builder.KieFileSystem;
-import org.kie.builder.KieModule;
 import org.kie.builder.KieModuleModel;
-import org.kie.builder.KieRepository;
-import org.kie.builder.KieServices;
-import org.kie.builder.Results;
 import org.kie.builder.Message.Level;
+import org.kie.builder.ReleaseId;
 import org.kie.io.Resource;
+import org.kie.runtime.KieContainer;
 import org.kie.runtime.KieSession;
 
 public class APIExample6 {
@@ -26,8 +22,8 @@ public class APIExample6 {
         Resource ex1Res = ks.getResources().newFileSystemResource( getFile("kie-api-example1") ) ;
         Resource ex2Res = ks.getResources().newFileSystemResource( getFile("kie-api-example2") ) ;             
         
-        GAV gav = ks.newGav( "org.kie", "kie-example6", "6.0.0-SNAPSHOT" );        
-        kfs.generateAndWritePomXML( gav );
+        ReleaseId rid = ks.newReleaseId(  "org.kie", "kie-example6", "6.0.0-SNAPSHOT" );        
+        kfs.generateAndWritePomXML( rid );
         
         KieModuleModel kModuleModel = ks.newKieModuleModel();
         kModuleModel.newKieBaseModel( "org.kie.example6" )
@@ -45,7 +41,7 @@ public class APIExample6 {
             throw new RuntimeException( "Build Errors:\n" + kb.getResults().toString() );
         }
 
-        KieContainer kContainer = ks.newKieContainer( gav );
+        KieContainer kContainer = ks.newKieContainer( rid );
 
         KieSession kSession = kContainer.newKieSession( "ksession6" );
         kSession.setGlobal( "out", out );

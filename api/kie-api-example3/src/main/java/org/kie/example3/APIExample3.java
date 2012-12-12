@@ -3,13 +3,10 @@ package org.kie.example3;
 import java.io.File;
 import java.io.PrintStream;
 
-import org.kie.builder.KieContainer;
+import org.kie.KieServices;
 import org.kie.builder.KieModule;
 import org.kie.builder.KieRepository;
-import org.kie.builder.KieServices;
-import org.kie.builder.impl.ClasspathKieProject;
-import org.kie.builder.impl.KieContainerImpl;
-import org.kie.io.KieResources;
+import org.kie.runtime.KieContainer;
 import org.kie.runtime.KieSession;
 
 
@@ -21,7 +18,7 @@ public class APIExample3  {
         
         KieModule kModule = kr.addKieModule( ks.getResources().newFileSystemResource( getFile("kie-api-example1") ) );
                 
-        KieContainer kContainer = ks.newKieContainer( kModule.getGAV() );
+        KieContainer kContainer = ks.newKieContainer( kModule.getReleaseId() );
         
         KieSession kSession = kContainer.newKieSession( "ksession1" );
         kSession.setGlobal( "out", out );

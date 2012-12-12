@@ -2,12 +2,12 @@ package org.kie.example5;
 
 import java.io.PrintStream;
 
+import org.kie.KieServices;
 import org.kie.builder.KieBuilder;
-import org.kie.builder.KieContainer;
 import org.kie.builder.KieFileSystem;
 import org.kie.builder.KieRepository;
-import org.kie.builder.KieServices;
 import org.kie.builder.Message.Level;
+import org.kie.runtime.KieContainer;
 import org.kie.runtime.KieSession;
 
 
@@ -27,7 +27,7 @@ public class APIExample5 {
             throw new RuntimeException( "Build Errors:\n" + kb.getResults().toString() );
         }
 
-        KieContainer kContainer = ks.newKieContainer( kr.getDefaultGAV() );
+        KieContainer kContainer = ks.newKieContainer( kr.getDefaultReleaseId() );
 
         KieSession kSession = kContainer.newKieSession();
         kSession.setGlobal( "out", out );
