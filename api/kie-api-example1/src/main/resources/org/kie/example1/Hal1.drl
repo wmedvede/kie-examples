@@ -2,10 +2,12 @@ package org.kie.example1
 
 import org.kie.example1.Message
 
+global java.io.PrintStream out
+
 rule "rule 1" when
     m : Message( )
 then
-    System.out.println( m.getName() + ": " +  m.getText() );
+    out.println( m.getName() + ": " +  m.getText() );
 end
 
 rule "rule 2" when
