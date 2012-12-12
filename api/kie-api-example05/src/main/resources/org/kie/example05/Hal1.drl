@@ -1,6 +1,6 @@
-package org.kie.example1
+package org.kie.example05
 
-import org.kie.example1.Message
+import org.kie.example05.Message
 
 global java.io.PrintStream out
 
