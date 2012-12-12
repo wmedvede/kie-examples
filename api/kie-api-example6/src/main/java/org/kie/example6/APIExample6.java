@@ -25,7 +25,7 @@ public class APIExample6 {
     public static void main( String[] args ) {
         KieServices ks = KieServices.Factory.get();  
         
-        KieRepository kr = ks.getKieRepository();
+        KieRepository kr = ks.getRepository();
         
         Resource ex1Res = ks.getResources().newFileSystemResource( getFile("kie-api-example1") ) ;
         Resource ex2Res = ks.getResources().newFileSystemResource( getFile("kie-api-example2") ) ;      
@@ -52,9 +52,9 @@ public class APIExample6 {
             throw new RuntimeException( "Build Errors:\n" + kb.getResults().toString() );
         }
 
-        KieContainer kContainer = ks.getKieContainer( gav );
+        KieContainer kContainer = ks.newKieContainer( gav );
 
-        KieSession kSession = kContainer.getKieSession( "ksession6" );
+        KieSession kSession = kContainer.newKieSession( "ksession6" );
         
         Object msg1 = createMessage(kContainer, "Dave", "Hello, HAL. Do you read me, HAL?");        
         kSession.insert( msg1 );
@@ -123,5 +123,6 @@ public class APIExample6 {
         }
         
         throw new RuntimeException("The target jar does not exist, please build project " + exampleName + " first");
-    }  
+    }
+
 }

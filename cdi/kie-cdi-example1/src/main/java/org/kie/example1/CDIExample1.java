@@ -8,12 +8,13 @@ import org.kie.cdi.KSession;
 import org.kie.runtime.KieSession;
 
 public class CDIExample1 {
+
     @Inject @KSession("ksession1")
     KieSession kSession;
     
     public void go() {
-      kSession.insert( new Message("Dave", "Hello, HAL. Do you read me, HAL?") );
-      kSession.fireAllRules();
+        kSession.insert( new Message("Dave", "Hello, HAL. Do you read me, HAL?") );
+        kSession.fireAllRules();
     }    
     
     public static void main( String[] args ) {
@@ -25,4 +26,5 @@ public class CDIExample1 {
         
         w.shutdown();
     }
+
 }

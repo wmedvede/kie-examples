@@ -1,6 +1,7 @@
 package org.kie.example1;
 
 public class Message {
+
     private String name;
     private String text;
     

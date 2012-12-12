@@ -12,9 +12,9 @@ public class APIExample7 {
         KieFactory kf = KieFactory.Factory.get();
 
         // Install example1 in the local maven repo before to do this
-        KieContainer kContainer = ks.getKieContainer( kf.newGav("org.kie", "kie-api-example1", "6.0.0-SNAPSHOT") );
+        KieContainer kContainer = ks.newKieContainer( kf.newGav("org.kie", "kie-api-example1", "6.0.0-SNAPSHOT") );
 
-        KieSession kSession = kContainer.getKieSession( "ksession1" );
+        KieSession kSession = kContainer.newKieSession( "ksession1" );
         Object msg1 = createMessage( kContainer,"Dave", "Hello, HAL. Do you read me, HAL?" );        
         kSession.insert( msg1 );
         kSession.fireAllRules();
