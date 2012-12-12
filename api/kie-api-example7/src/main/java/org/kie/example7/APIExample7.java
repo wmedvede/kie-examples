@@ -1,21 +1,29 @@
 package org.kie.example7;
 
+import java.io.PrintStream;
+
 import org.kie.builder.KieContainer;
 import org.kie.builder.KieServices;
 import org.kie.runtime.KieSession;
 
 public class APIExample7 {
 
-    public static void main( String[] args ) {
+    public void go(PrintStream out) {
         KieServices ks = KieServices.Factory.get();
 
         // Install example1 in the local maven repo before to do this
         KieContainer kContainer = ks.newKieContainer( ks.newGav("org.kie", "kie-api-example1", "6.0.0-SNAPSHOT") );
 
         KieSession kSession = kContainer.newKieSession( "ksession1" );
+        kSession.setGlobal( "out", out );
+        
         Object msg1 = createMessage( kContainer,"Dave", "Hello, HAL. Do you read me, HAL?" );        
         kSession.insert( msg1 );
-        kSession.fireAllRules();              
+        kSession.fireAllRules();            
+    }
+    
+    public static void main( String[] args ) {
+        new APIExample7().go( System.out );
     }
     
     private static Object createMessage(KieContainer kContainer, String name, String text) {

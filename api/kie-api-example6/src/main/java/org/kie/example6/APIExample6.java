@@ -1,6 +1,7 @@
 package org.kie.example6;
 
 import java.io.File;
+import java.io.PrintStream;
 import java.util.Arrays;
 
 import org.kie.builder.GAV;
@@ -16,14 +17,10 @@ import org.kie.builder.Message.Level;
 import org.kie.io.Resource;
 import org.kie.runtime.KieSession;
 
-/**
- * Hello world!
- *
- */
 public class APIExample6 {
-    public static void main( String[] args ) {
+    
+    public void go(PrintStream out) {
         KieServices ks = KieServices.Factory.get();          
-        KieRepository kr = ks.getRepository();
         KieFileSystem kfs = ks.newKieFileSystem();
         
         Resource ex1Res = ks.getResources().newFileSystemResource( getFile("kie-api-example1") ) ;
@@ -51,6 +48,7 @@ public class APIExample6 {
         KieContainer kContainer = ks.newKieContainer( gav );
 
         KieSession kSession = kContainer.newKieSession( "ksession6" );
+        kSession.setGlobal( "out", out );
         
         Object msg1 = createMessage(kContainer, "Dave", "Hello, HAL. Do you read me, HAL?");        
         kSession.insert( msg1 );
@@ -62,7 +60,11 @@ public class APIExample6 {
         
         Object msg3 = createMessage(kContainer, "Dave", "What's the problem?");        
         kSession.insert( msg3 );
-        kSession.fireAllRules();          
+        kSession.fireAllRules(); 
+    }
+    
+    public static void main( String[] args ) {
+         new APIExample6().go( System.out );
     }
    
     
@@ -73,7 +75,7 @@ public class APIExample6 {
                 "rule rule6 when \n" +
                 "    Message(text == \"What's the problem?\") \n" +
                 "then\n" +
-                "    insert( new Message(\"HAL\", \"I think you know what the problem is just as well as I do. \" ) ); \n" +
+                "    insert( new Message(\"HAL\", \"I think you know what the problem is just as well as I do.\" ) ); \n" +
                 "end \n";
         
         return s;
