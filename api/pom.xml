@@ -29,6 +29,7 @@
     <module>kie-api-example5</module>
     <module>kie-api-example6</module>
     <module>kie-api-example7</module>
+    <module>kie-api-example8</module>
   </modules>
 
   <dependencies>
