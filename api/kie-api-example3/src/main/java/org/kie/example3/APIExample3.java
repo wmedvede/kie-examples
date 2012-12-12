@@ -1,6 +1,7 @@
 package org.kie.example3;
 
 import java.io.File;
+import java.io.PrintStream;
 
 import org.kie.builder.KieContainer;
 import org.kie.builder.KieModule;
@@ -11,14 +12,10 @@ import org.kie.builder.impl.KieContainerImpl;
 import org.kie.io.KieResources;
 import org.kie.runtime.KieSession;
 
-/**
- * Hello world!
- *
- */
-public class APIExample3 
-{
-    public static void main( String[] args )
-    {
+
+public class APIExample3  {
+    
+    public void go(PrintStream out) {
         KieServices ks = KieServices.Factory.get();          
         KieRepository kr = ks.getRepository();
         
@@ -27,10 +24,15 @@ public class APIExample3
         KieContainer kContainer = ks.newKieContainer( kModule.getGAV() );
         
         KieSession kSession = kContainer.newKieSession( "ksession1" );
+        kSession.setGlobal( "out", out );
+        
         Object msg1 = createMessage( kContainer,"Dave", "Hello, HAL. Do you read me, HAL?" );        
         kSession.insert( msg1 );
         kSession.fireAllRules();
-              
+    }
+    
+    public static void main( String[] args ) {
+        new APIExample3().go( System.out );              
     }
     
     private static Object createMessage(KieContainer kContainer, String name, String text) {

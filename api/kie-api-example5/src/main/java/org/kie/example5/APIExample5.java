@@ -1,29 +1,19 @@
 package org.kie.example5;
 
-import java.io.File;
-import java.util.Arrays;
+import java.io.PrintStream;
 
-import org.kie.builder.GAV;
 import org.kie.builder.KieBuilder;
 import org.kie.builder.KieContainer;
 import org.kie.builder.KieFileSystem;
-import org.kie.builder.KieModule;
-import org.kie.builder.KieModuleModel;
 import org.kie.builder.KieRepository;
 import org.kie.builder.KieServices;
-import org.kie.builder.Results;
 import org.kie.builder.Message.Level;
-import org.kie.io.Resource;
 import org.kie.runtime.KieSession;
 
-/**
- * Hello world!
- *
- */
-public class APIExample5 
-{
-    public static void main( String[] args )
-    {
+
+public class APIExample5 {
+    
+    public void go(PrintStream out) {
         KieServices ks = KieServices.Factory.get();          
         KieRepository kr = ks.getRepository();
         KieFileSystem kfs = ks.newKieFileSystem();
@@ -40,9 +30,13 @@ public class APIExample5
         KieContainer kContainer = ks.newKieContainer( kr.getDefaultGAV() );
 
         KieSession kSession = kContainer.newKieSession();
+        kSession.setGlobal( "out", out );
                 
         kSession.insert( new Message( "Dave", "Hello, HAL. Do you read me, HAL?") );
-        kSession.fireAllRules();                       
+        kSession.fireAllRules();            
+    }
+    public static void main( String[] args ) {
+        new APIExample5().go( System.out );
     }
    
     
@@ -50,10 +44,11 @@ public class APIExample5
         String s = "" +
                    "package org.kie.example5 \n\n" +
                    "import org.kie.example5.Message \n\n" +
+                   "global java.io.PrintStream out \n\n" +
                    "rule \"rule 1\" when \n" +
                    "    m : Message( ) \n" +
                    "then \n" +
-                   "    System.out.println( m.getName() + \": \" +  m.getText() ); \n" +
+                   "    out.println( m.getName() + \": \" +  m.getText() ); \n" +
                    "end \n" +
                    "rule \"rule 2\" when \n" +
                    "    Message( text == \"Hello, HAL. Do you read me, HAL?\" ) \n" +
