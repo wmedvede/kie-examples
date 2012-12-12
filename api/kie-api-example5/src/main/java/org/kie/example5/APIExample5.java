@@ -6,7 +6,6 @@ import java.util.Arrays;
 import org.kie.builder.GAV;
 import org.kie.builder.KieBuilder;
 import org.kie.builder.KieContainer;
-import org.kie.builder.KieFactory;
 import org.kie.builder.KieFileSystem;
 import org.kie.builder.KieModule;
 import org.kie.builder.KieModuleModel;
@@ -25,20 +24,16 @@ public class APIExample5
 {
     public static void main( String[] args )
     {
-        KieServices ks = KieServices.Factory.get();  
-        
+        KieServices ks = KieServices.Factory.get();          
         KieRepository kr = ks.getRepository();
-      
-        
-        KieFactory kf = KieFactory.Factory.get();
-        KieFileSystem kfs = kf.newKieFileSystem();
+        KieFileSystem kfs = ks.newKieFileSystem();
         
         kfs.write( "src/main/resources/org/kie/example5/HAL5.drl", getRule() );
  
         KieBuilder kb = ks.newKieBuilder( kfs );
         
-        kb.build(); // kieModule is automatically deployed to KieRepository if successfully built.
-        if ( kb.hasResults( Level.ERROR ) ) {
+        kb.buildAll(); // kieModule is automatically deployed to KieRepository if successfully built.
+        if ( kb.getResults().hasMessages( Level.ERROR ) ) {
             throw new RuntimeException( "Build Errors:\n" + kb.getResults().toString() );
         }
 

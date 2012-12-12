@@ -1,7 +1,6 @@
 package org.kie.example8;
 
 import org.kie.builder.KieContainer;
-import org.kie.builder.KieFactory;
 import org.kie.builder.KieServices;
 import org.kie.runtime.KieSession;
 
@@ -9,10 +8,9 @@ public class APIExample8 {
 
     public static void main( String[] args ) {
         KieServices ks = KieServices.Factory.get();
-        KieFactory kf = KieFactory.Factory.get();
 
         // Install example1 in the local maven repo before to do this
-        KieContainer kContainer = ks.newKieContainer( kf.newGav("org.kie", "kie-api-example2", "6.0.0-SNAPSHOT") );
+        KieContainer kContainer = ks.newKieContainer( ks.newGav("org.kie", "kie-api-example2", "6.0.0-SNAPSHOT") );
 
         KieSession kSession = kContainer.newKieSession( "ksession1" );
         Object msg1 = createMessage( kContainer,"Dave", "Hello, HAL. Do you read me, HAL?" );        

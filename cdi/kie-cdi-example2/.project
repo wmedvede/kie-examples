@@ -2,7 +2,11 @@
   <name>kie-cdi-example2</name>
   <comment>Drools Expert is the rule engine and Drools Fusion does complex event processing (CEP). NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
   <projects>
+    <project>drools-compiler</project>
+    <project>drools-core</project>
+    <project>kie-api</project>
     <project>kie-cdi-example1</project>
+    <project>kie-internal</project>
   </projects>
   <buildSpec>
     <buildCommand>

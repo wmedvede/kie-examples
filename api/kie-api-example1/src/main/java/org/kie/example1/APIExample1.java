@@ -2,8 +2,6 @@ package org.kie.example1;
 
 import org.kie.builder.KieContainer;
 import org.kie.builder.KieServices;
-import org.kie.builder.impl.ClasspathKieProject;
-import org.kie.builder.impl.KieContainerImpl;
 import org.kie.runtime.KieSession;
 
 /**

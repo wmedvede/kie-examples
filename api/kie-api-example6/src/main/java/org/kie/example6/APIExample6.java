@@ -6,7 +6,6 @@ import java.util.Arrays;
 import org.kie.builder.GAV;
 import org.kie.builder.KieBuilder;
 import org.kie.builder.KieContainer;
-import org.kie.builder.KieFactory;
 import org.kie.builder.KieFileSystem;
 import org.kie.builder.KieModule;
 import org.kie.builder.KieModuleModel;
@@ -23,20 +22,17 @@ import org.kie.runtime.KieSession;
  */
 public class APIExample6 {
     public static void main( String[] args ) {
-        KieServices ks = KieServices.Factory.get();  
-        
+        KieServices ks = KieServices.Factory.get();          
         KieRepository kr = ks.getRepository();
+        KieFileSystem kfs = ks.newKieFileSystem();
         
         Resource ex1Res = ks.getResources().newFileSystemResource( getFile("kie-api-example1") ) ;
-        Resource ex2Res = ks.getResources().newFileSystemResource( getFile("kie-api-example2") ) ;      
+        Resource ex2Res = ks.getResources().newFileSystemResource( getFile("kie-api-example2") ) ;             
         
-        KieFactory kf = KieFactory.Factory.get();
-        KieFileSystem kfs = kf.newKieFileSystem();
-        
-        GAV gav = KieFactory.Factory.get().newGav( "org.kie", "kie-example6", "6.0.0-SNAPSHOT" );        
+        GAV gav = ks.newGav( "org.kie", "kie-example6", "6.0.0-SNAPSHOT" );        
         kfs.generateAndWritePomXML( gav );
         
-        KieModuleModel kModuleModel = kf.newKieModuleModel();
+        KieModuleModel kModuleModel = ks.newKieModuleModel();
         kModuleModel.newKieBaseModel( "org.kie.example6" )
                     .addInclude( "org.kie.example1" )
                     .addInclude( "org.kie.example2") 
@@ -47,8 +43,8 @@ public class APIExample6 {
         
         KieBuilder kb = ks.newKieBuilder( kfs );
         kb.setDependencies( ex1Res, ex2Res);
-        kb.build(); // kieModule is automatically deployed to KieRepository if successfully built.
-        if ( kb.hasResults( Level.ERROR ) ) {
+        kb.buildAll(); // kieModule is automatically deployed to KieRepository if successfully built.
+        if ( kb.getResults().hasMessages( Level.ERROR ) ) {
             throw new RuntimeException( "Build Errors:\n" + kb.getResults().toString() );
         }
 
