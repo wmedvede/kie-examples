@@ -11,11 +11,13 @@ import org.kie.runtime.KieSession;
  *
  */
 public class APIExample1  {
+
     public static void main( String[] args ) {
         KieServices ks = KieServices.Factory.get();        
-        KieContainer kContainer = ks.getKieClasspathContainer();
-        KieSession kSession = kContainer.getKieSession( "ksession1" );
+        KieContainer kContainer = ks.newKieClasspathContainer();
+        KieSession kSession = kContainer.newKieSession( "ksession1" );
         kSession.insert( new Message("Dave", "Hello, HAL. Do you read me, HAL?") );
         kSession.fireAllRules();
     }
+
 }

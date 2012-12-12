@@ -27,7 +27,7 @@ public class APIExample5
     {
         KieServices ks = KieServices.Factory.get();  
         
-        KieRepository kr = ks.getKieRepository();
+        KieRepository kr = ks.getRepository();
       
         
         KieFactory kf = KieFactory.Factory.get();
@@ -42,9 +42,9 @@ public class APIExample5
             throw new RuntimeException( "Build Errors:\n" + kb.getResults().toString() );
         }
 
-        KieContainer kContainer = ks.getKieContainer( kr.getDefaultGAV() );
+        KieContainer kContainer = ks.newKieContainer( kr.getDefaultGAV() );
 
-        KieSession kSession = kContainer.getKieSession();
+        KieSession kSession = kContainer.newKieSession();
                 
         kSession.insert( new Message( "Dave", "Hello, HAL. Do you read me, HAL?") );
         kSession.fireAllRules();                       

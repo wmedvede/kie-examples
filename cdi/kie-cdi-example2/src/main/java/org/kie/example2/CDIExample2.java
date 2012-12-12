@@ -33,5 +33,6 @@ public class CDIExample2  {
         bean.go();
         
         w.shutdown();
-    }    
+    }
+
 }
