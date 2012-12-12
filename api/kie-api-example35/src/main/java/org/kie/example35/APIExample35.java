@@ -20,7 +20,7 @@ public class APIExample35  {
                 
         KieContainer kContainer = ks.newKieContainer( kModule.getReleaseId() );
         
-        KieSession kSession = kContainer.newKieSession( "ksession1" );
+        KieSession kSession = kContainer.newKieSession( );
         kSession.setGlobal( "out", out );
         
         Object msg1 = createMessage( kContainer,"Dave", "Hello, HAL. Do you read me, HAL?" );        
@@ -35,7 +35,7 @@ public class APIExample35  {
     private static Object createMessage(KieContainer kContainer, String name, String text) {
         Object o = null;
         try {
-            Class cl = kContainer.getClassLoader().loadClass( "org.kie.example1.Message" );
+            Class cl = kContainer.getClassLoader().loadClass( "org.kie.example05.Message" );
             o =  cl.getConstructor( new Class[] { String.class, String.class } ).newInstance( name, text );
         } catch ( Exception e ) {
             e.printStackTrace();
