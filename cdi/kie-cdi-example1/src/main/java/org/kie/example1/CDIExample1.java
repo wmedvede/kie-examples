@@ -1,5 +1,7 @@
 package org.kie.example1;
 
+import java.io.PrintStream;
+
 import javax.inject.Inject;
 
 import org.jboss.weld.environment.se.Weld;
@@ -12,7 +14,8 @@ public class CDIExample1 {
     @Inject @KSession("ksession1")
     KieSession kSession;
     
-    public void go() {
+    public void go(PrintStream out) {
+        kSession.setGlobal( "out", out );
         kSession.insert( new Message("Dave", "Hello, HAL. Do you read me, HAL?") );
         kSession.fireAllRules();
     }    
@@ -22,7 +25,7 @@ public class CDIExample1 {
         
         WeldContainer wc = w.initialize();
         CDIExample1 bean = wc.instance().select(CDIExample1.class).get();
-        bean.go();
+        bean.go( System.out );
         
         w.shutdown();
     }
