@@ -1,10 +1,10 @@
 package org.kie.example7;
 
-import java.io.PrintStream;
+import org.kie.api.KieServices;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 
-import org.kie.KieServices;
-import org.kie.runtime.KieContainer;
-import org.kie.runtime.KieSession;
+import java.io.PrintStream;
 
 public class APIExample7 {
 

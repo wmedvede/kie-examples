@@ -1,14 +1,14 @@
 package org.kie.example4;
 
+import org.kie.api.KieServices;
+import org.kie.api.builder.KieModule;
+import org.kie.api.builder.KieRepository;
+import org.kie.api.io.Resource;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
+
 import java.io.File;
 import java.io.PrintStream;
-
-import org.kie.KieServices;
-import org.kie.builder.KieModule;
-import org.kie.builder.KieRepository;
-import org.kie.io.Resource;
-import org.kie.runtime.KieContainer;
-import org.kie.runtime.KieSession;
 
 
 public class APIExample4  {

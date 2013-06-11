@@ -1,10 +1,10 @@
 package org.kie.example1;
 
-import java.io.PrintStream;
+import org.kie.api.KieServices;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 
-import org.kie.KieServices;
-import org.kie.runtime.KieContainer;
-import org.kie.runtime.KieSession;
+import java.io.PrintStream;
 
 public class APIExample1  {
     
@@ -16,6 +16,8 @@ public class APIExample1  {
         kSession.setGlobal( "out", out );
         kSession.insert( new Message("Dave", "Hello, HAL. Do you read me, HAL?") );
         kSession.fireAllRules();
+
+        //kSession.startProcess("com.sample.bpmn.hello");
     }    
     
     

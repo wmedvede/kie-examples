@@ -1,6 +1,7 @@
 package org.kie.example1
 
 import org.kie.example1.Message
+import org.kie.beans.MessageBean
 
 global java.io.PrintStream out
 
@@ -8,10 +9,18 @@ rule "rule 1" when
     m : Message( )
 then
     out.println( m.getName() + ": " +  m.getText() );
+    insert( new MessageBean("Say hello!!!") );
 end
 
 rule "rule 2" when
     Message( text == "Hello, HAL. Do you read me, HAL?" )
 then
     insert( new Message("HAL", "Dave. I read you." ) );
+end
+
+
+rule "rule 3" when
+    m: MessageBean( )
+then
+    System.out.println("New MessageBean created arrived: " + m);
 end

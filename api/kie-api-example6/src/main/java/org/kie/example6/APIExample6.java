@@ -1,17 +1,17 @@
 package org.kie.example6;
 
+import org.kie.api.KieServices;
+import org.kie.api.builder.KieBuilder;
+import org.kie.api.builder.KieFileSystem;
+import org.kie.api.builder.Message.Level;
+import org.kie.api.builder.ReleaseId;
+import org.kie.api.builder.model.KieModuleModel;
+import org.kie.api.io.Resource;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
+
 import java.io.File;
 import java.io.PrintStream;
-
-import org.kie.KieServices;
-import org.kie.builder.KieBuilder;
-import org.kie.builder.KieFileSystem;
-import org.kie.builder.KieModuleModel;
-import org.kie.builder.Message.Level;
-import org.kie.builder.ReleaseId;
-import org.kie.io.Resource;
-import org.kie.runtime.KieContainer;
-import org.kie.runtime.KieSession;
 
 public class APIExample6 {
     

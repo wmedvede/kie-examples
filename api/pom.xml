@@ -30,8 +30,10 @@
     <module>kie-api-example4</module>
     <module>kie-api-example5</module>
     <module>kie-api-example6</module>
-    <module>kie-api-example7</module>
-    <module>kie-api-example8</module>
+
+    <!--module>kie-api-example7</module>
+    <module>kie-api-example8</module-->
+
   </modules>
 
   <dependencies>
@@ -39,6 +41,17 @@
       <groupId>org.drools</groupId>
       <artifactId>drools-compiler</artifactId>
     </dependency>
+
+      <dependency>
+          <groupId>org.kie</groupId>
+          <artifactId>kie-api</artifactId>
+          <version>6.0.0-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.google.protobuf</groupId>
+          <artifactId>protobuf-java</artifactId>
+      </dependency>
 
     <dependency>
       <groupId>org.slf4j</groupId>
